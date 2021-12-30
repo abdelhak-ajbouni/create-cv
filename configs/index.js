@@ -15,7 +15,7 @@ export default {
     secret: env.LINKEDIN_CLIENT_SECRET
   },
   nextAuth: {
-    secret: env.NEXT_AUTH_SECRET
+    secret: env.NEXTAUTH_SECRET
   },
   database: {
     host: env.DB_HOST,
