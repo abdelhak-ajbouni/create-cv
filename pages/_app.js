@@ -1,4 +1,6 @@
 import { SessionProvider } from "next-auth/react"
+import { ThemeProvider } from 'next-themes'
+
 
 export default function App({
   Component,
@@ -6,7 +8,9 @@ export default function App({
 }) {
   return (
     <SessionProvider session={session}>
-      <Component {...pageProps} />
+      <ThemeProvider enableSystem={false} attribute="class">
+        <Component {...pageProps} />
+      </ThemeProvider>
     </SessionProvider>
   )
 }
