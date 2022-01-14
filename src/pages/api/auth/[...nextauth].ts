@@ -3,9 +3,9 @@ import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
 import LinkedInProvider from "next-auth/providers/linkedin"
 
-import config from "../../../configs"
+import config from "../../../../configs"
 
-const { github, google, linkedin, nextAuth, database } = config
+const { github, google, linkedin, nextAuth, database, mode } = config
 
 export default NextAuth({
   secret: nextAuth.secret,
@@ -64,5 +64,18 @@ export default NextAuth({
   jwt: {
     encryption: true,
   },
-  database: database.url
+  database: database.url,
+  debug: mode === "development",
+  logger: {
+    error(code, metadata) {
+      console.error(code, metadata)
+    },
+    warn(code) {
+      console.warn(code)
+    },
+    debug(code, metadata) {
+      console.debug('[debug] code =====================', code)
+      console.debug('[debug] metadata =================', metadata)
+    }
+  }
 })

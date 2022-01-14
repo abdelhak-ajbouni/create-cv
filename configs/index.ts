@@ -2,6 +2,7 @@
 const env = process.env
 
 export default {
+  mode: env.MODE,
   github: {
     id: env.GITHUB_CLIENT_ID,
     secret: env.GITHUB_CLIENT_SECRET
@@ -24,7 +25,7 @@ export default {
     username: env.DB_USERNAME,
     password: env.DB_PASSWORD,
     dialect: env.DB_DIALECT,
-    logging: env.MODE === "development" || false,
+    logging: env.MODE === "development",
     pool: {
       max: 5,
       min: 0,
