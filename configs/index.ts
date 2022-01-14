@@ -1,7 +1,7 @@
 
 const env = process.env
 
-export default {
+const configs = {
   mode: env.MODE,
   github: {
     id: env.GITHUB_CLIENT_ID,
@@ -34,3 +34,5 @@ export default {
     }
   }
 }
+
+export default configs
