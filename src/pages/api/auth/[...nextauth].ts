@@ -12,17 +12,17 @@ export default NextAuth({
   // Configure one or more authentication providers
   providers: [
     GoogleProvider({
-      clientId: google.id,
-      clientSecret: google.secret,
-      authorizationUrl: "https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&prompt=consent&response_type=code",
+      clientId: google.id!,
+      clientSecret: google.secret!,
+      // authorizationUrl: "https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&prompt=consent&response_type=code",
     }),
     GithubProvider({
-      clientId: github.id,
-      clientSecret: github.secret
+      clientId: github.id!,
+      clientSecret: github.secret!
     }),
     LinkedInProvider({
-      clientId: linkedin.id,
-      clientSecret: linkedin.secret
+      clientId: linkedin.id!,
+      clientSecret: linkedin.secret!
     }),
     // ...add more providers here
   ],
@@ -61,10 +61,6 @@ export default NextAuth({
     // Note: This option is ignored if using JSON Web Tokens
     updateAge: 24 * 60 * 60, // 24 hours
   },
-  jwt: {
-    encryption: true,
-  },
-  database: database.url,
   debug: mode === "development",
   logger: {
     error(code, metadata) {
