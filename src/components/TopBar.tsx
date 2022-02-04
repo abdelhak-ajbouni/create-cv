@@ -20,11 +20,9 @@ export default function TopBar({ }: Props) {
   return (
     <div className="top-bar bg-white dark:bg-gray-900 shadow-md shadow-gray-100">
       <Container className="justify-between px-4 py-2">
-        <Image src={logo} alt='logo' height={40} width={100} />
-        <div className="top-bar-right">
-          <div className="top-bar-item">
-            <Button label={`${session ? session?.user?.name : "login"}`} onClick={handleSignIn} />
-          </div>
+        <div className="top-bar-wrapper flex justify-between">
+          <Image src={logo} alt='logo' height={40} width={100} />
+          <Button label={`${session ? session?.user?.name : "login"}`} onClick={handleSignIn} />
         </div>
       </Container>
     </div >
