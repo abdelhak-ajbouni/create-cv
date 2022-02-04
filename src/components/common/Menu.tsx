@@ -2,7 +2,7 @@ import { FcOk, FcClock } from "react-icons/fc";
 
 export default function Menu({ className, items, orientation, activeItem, onClick }: Props) {
 
-  const renderStatusIcon = (status: Status) => {
+  const renderStatusIcon = (status: string | undefined) => {
     switch (status) {
       case "completed":
         return <FcOk />;
@@ -15,8 +15,6 @@ export default function Menu({ className, items, orientation, activeItem, onClic
     }
   };
 
-  
-  
   return (
     <div className={`menu ${className}`}>
       <ul className={`flex flex-col ${orientation === "vertical" ? "flex-col" : "md:flex-row"}`}>
@@ -41,13 +39,15 @@ export default function Menu({ className, items, orientation, activeItem, onClic
   );
 }
 
-type Status = "completed" | "in-progress" | "not-started" | undefined;
+// TODO: Add and use type status definitions
+// type Status = "completed" | "in-progress" | "not-started" | "";
 
 type Item = {
   id: string | number;
   value: string;
   label?: string;
-  status?: Status;
+  status?: string;
+  render?: React.ReactNode;
 }
 
 type Props = {
@@ -57,3 +57,7 @@ type Props = {
   orientation?: 'horizontal' | 'vertical';
   onClick?: (value: Item) => void;
 }
+
+Menu.defaultProps = {
+  orientation: 'horizontal',
+};
