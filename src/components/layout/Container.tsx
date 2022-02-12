@@ -1,32 +1,28 @@
-import { FcLeft } from "react-icons/fc";
+import { TiArrowLeft } from "react-icons/ti";
 
-export default function Container({ className, title, hasShadow, onGoBack, children }: Props) {
+export default function Container({ className, classNameContent, title, hasShadow, onGoBack, children }: Props) {
   const hasHeader = title || onGoBack;
 
   return (
-    <div className={`
-      container 
-      ${className} 
-      ${hasShadow ? "shadow-md shadow-gray-100" : ""} 
-      mx-auto
-    `}>
+    <div className={`container ${className} ${hasShadow ? "shadow-md shadow-gray-100" : ""} mx-auto`}>
       {
         hasHeader && (
-          <div className="container-header flex justify-start items-center mb-4">
-            {onGoBack && (
-              <div className="flex">
-                <FcLeft
-                  className="cursor-pointer hover:bg-gray-100 rounded-full p-2"
+          <>
+            <div className="container-header flex justify-start items-center">
+              {onGoBack && (
+                <TiArrowLeft
+                  className="cursor-pointer hover:bg-gray-100 rounded-full p-1 text-gray-600"
                   size={48}
                   onClick={onGoBack}
                 />
-              </div>
-            )}
-            {title && <h2 className="text-24">{title}</h2>}
-          </div>
+              )}
+              {title && <h2 className="text-gray-600 text-xl font-bold mx-2">{title}</h2>}
+            </div>
+            <hr className="mb-4" />
+          </>
         )
       }
-      <div className="container-content">
+      <div className={`container-content ${classNameContent} `}>
         {children}
       </div>
     </div>
@@ -35,12 +31,14 @@ export default function Container({ className, title, hasShadow, onGoBack, child
 
 Container.defaultProps = {
   className: "",
+  classNameContent: "",
   title: "",
-  hasShadow: true,
+  hasShadow: false,
 }
 
 type Props = {
   className?: string;
+  classNameContent?: string;
   title?: string;
   hasShadow?: boolean;
   onGoBack?: () => void;

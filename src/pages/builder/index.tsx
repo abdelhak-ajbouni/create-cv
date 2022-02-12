@@ -21,6 +21,7 @@ export default function Builder() {
     <div className="builder-page">
       <Container 
         className='bg-white dark:bg-black-400 my-4 px-4 py-1 rounded'
+        classNameContent='flex'
         title='Builder'
         hasShadow
         onGoBack={() => { }}
