@@ -25,11 +25,11 @@ export default function SignIn({ providers }: Props) {
   return (
     <div className='login'>
       <Container className='flex justify-center my-4 p-8 bg-white rounded'>
-        {Object.values(providers).map((provider) => (
-          <div key={provider.id} className='flex h-12 py-2 px-8 m-2 rounded border bg-gray-50'>
-            {getProviderLogo(provider.id)}
-            <button className='mx-4' onClick={() => signIn(provider.id)}>
-              Sign in with {provider.name}
+        {Object.values(providers).map(({ id, name }: any) => (
+          <div key={id} className='flex h-12 py-2 px-8 m-2 rounded border bg-gray-50'>
+            {getProviderLogo(id)}
+            <button className='mx-4' onClick={() => signIn(id)}>
+              Sign in with {name}
             </button>
           </div>
         ))}
