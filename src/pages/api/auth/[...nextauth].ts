@@ -2,13 +2,17 @@ import NextAuth from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
 import LinkedInProvider from "next-auth/providers/linkedin"
+import { PrismaAdapter } from "@next-auth/prisma-adapter"
+import { PrismaClient } from "@prisma/client"
 
 import config from "../../../../configs"
 
+const prisma = new PrismaClient()
 const { github, google, linkedin, nextAuth, database, mode } = config
 
 export default NextAuth({
   secret: nextAuth.secret,
+  adapter: PrismaAdapter(prisma),
   // Configure one or more authentication providers
   providers: [
     GoogleProvider({
@@ -33,18 +37,18 @@ export default NextAuth({
     async redirect({ url, baseUrl }) {
       return baseUrl
     },
-    async session({ session, user, token }) {
-      // Send properties to the client, like an access_token from a provider.
-      session.accessToken = token.accessToken
-      return session
-    },
-    async jwt({ token, user, account, profile, isNewUser }) {
-      // Persist the OAuth access_token to the token right after signin
-      if (account) {
-        token.accessToken = account.access_token
-      }
-      return token
-    }
+    // async session({ session, user, token }) {
+    //   // Send properties to the client, like an access_token from a provider.
+    //   session.accessToken = token.accessToken
+    //   return session
+    // },
+    // async jwt({ token, user, account, profile, isNewUser }) {
+    //   // Persist the OAuth access_token to the token right after signin
+    //   if (account) {
+    //     token.accessToken = account.access_token
+    //   }
+    //   return token
+    // }
   },
   pages: {
     signIn: '/auth/login',
